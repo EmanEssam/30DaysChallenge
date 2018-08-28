@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +30,8 @@ public class ProgressFragment extends Fragment {
     private long habitSize;
     private List<Day> habits;
 
+    private CircleProgressBar progressBar;
+
     public ProgressFragment() {
         // Required empty public constructor
     }
@@ -41,6 +42,23 @@ public class ProgressFragment extends Fragment {
         super.onCreate(savedInstanceState);
         habits = new ArrayList<>();
         habitList = FirebaseDatabase.getInstance().getReference("habits");
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        getActivity().setTitle(getString(R.string.my_progress));
+        View view = inflater.inflate(R.layout.fragment_progress, container, false);
+        progressBar = view.findViewById(R.id.progressBar);
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         habitList.addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -51,6 +69,23 @@ public class ProgressFragment extends Fragment {
                     habits.add(task);
                 }
 
+                float percentage = (float) habits.size() / (float) getCurrentMonthDays();
+                int result = (int) (percentage * 100);
+                progressBar.setProgress(result);
+                progressBar.setText(String.valueOf(result));    // set progress text
+
+                // set progress value
+
+
+                progressBar.setMaxValue(100);            // set progress max value
+                progressBar.setStrokeWidth(10);        // set stroke width
+                progressBar.setBackgroundWidth(10);        // set progress background width
+                progressBar.setProgressColor("#FF6FD99D");    // set progress color
+                progressBar.setBackgroundColor("#FFF9916B");    // set progress backgorund color
+                progressBar.setTextColor("#FF6FD99D");        // set text color
+                progressBar.setSuffix("%");            // set suffix
+                progressBar.setPrefix("");
+
             }
 
             @Override
@@ -59,34 +94,6 @@ public class ProgressFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        getActivity().setTitle(getString(R.string.my_progress));
-        View view = inflater.inflate(R.layout.fragment_progress, container, false);
-        CircleProgressBar progressBar = view.findViewById(R.id.progressBar);
-        Log.d("zft", habits.size() + "");
-        float precentage = habits.size() * getCurrentMonthDays();
-        progressBar.setProgress(precentage / 100);
-        progressBar.setText(String.valueOf(precentage / 100));    // set progress text
-
-        // set progress value
-
-
-        progressBar.setMaxValue(100);            // set progress max value
-        progressBar.setStrokeWidth(10);        // set stroke width
-        progressBar.setBackgroundWidth(10);        // set progress background width
-        progressBar.setProgressColor("#FF6FD99D");    // set progress color
-        progressBar.setBackgroundColor("#FFF9916B");    // set progress backgorund color
-        progressBar.setTextColor("#FF6FD99D");        // set text color
-        progressBar.setSuffix("%");            // set suffix
-        progressBar.setPrefix("");
-
-
-        return view;
     }
 
     private int getCurrentMonthDays() {
