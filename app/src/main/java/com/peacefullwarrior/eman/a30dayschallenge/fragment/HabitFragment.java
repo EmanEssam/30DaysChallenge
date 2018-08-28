@@ -1,6 +1,7 @@
 package com.peacefullwarrior.eman.a30dayschallenge.fragment;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,11 +21,9 @@ import com.peacefullwarrior.eman.a30dayschallenge.R;
 import com.peacefullwarrior.eman.a30dayschallenge.adapter.HabitAdapter;
 import com.peacefullwarrior.eman.a30dayschallenge.model.Day;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +33,7 @@ public class HabitFragment extends Fragment {
     DatabaseReference habitList;
     private RecyclerView mTasksList;
     private List<Day> habits;
+    private List<String> keys = new ArrayList<>();
 
 
     public HabitFragment() {
@@ -44,7 +44,6 @@ public class HabitFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         habits = new ArrayList<>();
-        final List<String> keys = new ArrayList<>();
         habitList = FirebaseDatabase.getInstance().getReference("habits");
         habitList.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,12 +54,9 @@ public class HabitFragment extends Fragment {
                     Day task = dataSnapshot1.getValue(Day.class);
                     habits.add(task);
                     keys.add(dataSnapshot1.getKey());
-
                 }
-                mTasksList.setLayoutManager(new GridLayoutManager(getContext(), 6));
-                myTasksAdapter = new HabitAdapter(Day.generateDays(getCurrentMonthNumber(), getCurrentMonthDays(), habits), getContext(), keys);
-                mTasksList.setAdapter(myTasksAdapter);
-                mTasksList.setHasFixedSize(true);
+
+                new GenerateDaysAsyncTask().execute();
 
             }
 
@@ -92,13 +88,31 @@ public class HabitFragment extends Fragment {
     private int getCurrentMonthDays() {
 
         final Calendar cal = Calendar.getInstance();
-        String month_name = cal.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
-        int current_day = cal.get(Calendar.DAY_OF_MONTH);
         cal.set(Calendar.DAY_OF_MONTH, 1);
         int maxDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        SimpleDateFormat df = new SimpleDateFormat("MMM d, yyyy");
-        final List<String> monthCalendar = new ArrayList<>();
         return maxDay;
+    }
+
+    class GenerateDaysAsyncTask extends AsyncTask<Void, Void, List<Day>> {
+
+        @Override
+        protected List<Day> doInBackground(Void... voids) {
+
+            List<Day> days = Day.generateDays(getCurrentMonthNumber(), getCurrentMonthDays(), habits);
+
+            return days;
+        }
+
+        @Override
+        protected void onPostExecute(List<Day> days) {
+            super.onPostExecute(days);
+
+            mTasksList.setLayoutManager(new GridLayoutManager(getContext(), 6));
+            myTasksAdapter = new HabitAdapter(days, getContext(), keys);
+            mTasksList.setAdapter(myTasksAdapter);
+            mTasksList.setHasFixedSize(true);
+
+        }
     }
 
 }
