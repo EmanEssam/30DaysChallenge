@@ -84,7 +84,10 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 int appWidgetIds[] = appWidgetManager.getAppWidgetIds(
                         new ComponentName(context, TaskWidget.class));
-                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.appwidget_text);
+                for (int appWidgetId : appWidgetIds) {
+                    TaskWidget.updateAppWidget(context, appWidgetManager, appWidgetId);
+                }
+//                appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.appwidget_text);
                 Toast.makeText(context, R.string.task_added, Toast.LENGTH_SHORT).show();
             }
         });

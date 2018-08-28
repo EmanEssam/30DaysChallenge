@@ -15,8 +15,8 @@ import com.peacefullwarrior.eman.a30dayschallenge.activity.AddNewTaskActivity;
  */
 public class TaskWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+    public static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                       int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
         Intent intent = new Intent(context, AddNewTaskActivity.class);
