@@ -90,13 +90,16 @@ public class HomeActivity extends AppCompatActivity
                 Intent intent = new Intent(HomeActivity.this, AddNewTaskActivity.class);
                 intent.putExtra("buy", true);
                 startActivity(intent);
+                overridePendingTransition(R.anim.entry, R.anim.exit);
             } else if (f instanceof DailyRoutineFragment) {
                 Intent intent = new Intent(HomeActivity.this, AddNewDailyRoutine.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.entry, R.anim.exit);
             } else {
                 Intent intent = new Intent(HomeActivity.this, AddNewTaskActivity.class);
                 intent.putExtra("buy", false);
                 startActivity(intent);
+                overridePendingTransition(R.anim.entry, R.anim.exit);
             }
         }
 
