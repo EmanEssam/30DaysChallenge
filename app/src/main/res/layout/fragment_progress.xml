@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    tools:context=".ui.fragment.ProgressFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <com.emredavarci.circleprogressbar.CircleProgressBar xmlns:cpb="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/progressBar"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        cpb:backgroundColor="#e7b330"
+        cpb:backgroundWidth="8"
+        cpb:maxValue="100"
+        cpb:prefix=""
+        cpb:progressColor="#e76130"
+        cpb:progressText="Loading..."
+        cpb:progressTextColor="#f9916b"
+        cpb:roundedCorners="true"
+        cpb:strokeWidth="14"
+        cpb:suffix="%"
+        cpb:textSize="18sp" />
+
+</FrameLayout>

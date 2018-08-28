@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "289352419182",
+    "firebase_url": "https://days-challenge-3a45e.firebaseio.com",
+    "project_id": "days-challenge-3a45e",
+    "storage_bucket": "days-challenge-3a45e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:289352419182:android:b7db3f03c6dc15b6",
+        "android_client_info": {
+          "package_name": "com.peacefullwarrior.eman.a30dayschallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "289352419182-l43bkplu4tp8cb6vf5bmia690oe2ptm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwDdYngk0rSpoYd9V1xCpGDIjaq58fvXM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
