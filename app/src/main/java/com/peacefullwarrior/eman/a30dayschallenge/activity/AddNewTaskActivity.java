@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -29,8 +30,8 @@ public class AddNewTaskActivity extends AppCompatActivity {
     private static String taskDate;
     FirebaseDatabase database;
     private Button mAddTaskBtn;
-    private TextView mTitleTv;
-    private TextView mDescriptionTv;
+    private EditText mTitleTv;
+    private EditText mDescriptionTv;
     private RadioButton mTaskRB, mEventRB;
     private int taskType = 1;
     private boolean buy;

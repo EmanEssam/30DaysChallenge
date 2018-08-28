@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +30,8 @@ public class EditToBuyListActivity extends AppCompatActivity {
     private static TextView mDateTv;
     private static String taskDate;
     private Button mUpdatTaskBtn;
-    private TextView mTitleTv;
-    private TextView mDescriptionTv;
+    private EditText mTitleTv;
+    private EditText mDescriptionTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

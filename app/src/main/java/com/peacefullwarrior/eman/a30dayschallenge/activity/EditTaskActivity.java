@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -31,8 +32,8 @@ public class EditTaskActivity extends AppCompatActivity {
     private static TextView mDateTv;
     private static String taskDate;
     private Button mUpdatTaskBtn;
-    private TextView mTitleTv;
-    private TextView mDescriptionTv;
+    private EditText mTitleTv;
+    private EditText mDescriptionTv;
     private RadioButton mTaskRB, mEventRB;
     private int taskType = 1;
     private boolean buy;
@@ -72,9 +73,9 @@ public class EditTaskActivity extends AppCompatActivity {
                             Log.e("update", databaseError.getMessage());
                         }
                     });
-
+                    finish();
                 }
-                finish();
+
             }
         });
         mDateTv.setOnClickListener(new View.OnClickListener() {

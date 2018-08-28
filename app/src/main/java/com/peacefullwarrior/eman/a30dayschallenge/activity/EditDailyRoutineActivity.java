@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -27,8 +28,8 @@ public class EditDailyRoutineActivity extends AppCompatActivity {
     private static TextView mDateTv;
     private static String taskDate;
     private Button mUpdatTaskBtn;
-    private TextView mTitleTv;
-    private TextView mDescriptionTv;
+    private EditText mTitleTv;
+    private EditText mDescriptionTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
