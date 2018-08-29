@@ -30,12 +30,8 @@
     <string name="time">Time</string>
     <string name="date">Date</string>
     <string name="task_added">Task Added to Widget</string>
-    <string name="habit">Habit</string>
     <string name="select_time">Select Time</string>
     <string name="name">name</string>
-    <string name="select_time">Select Time</string>
     <string name="progress">progress</string>
-    <string name="to_buy_list">To Buy List</string>
-    <string name="events">Events</string>
-    <string name="habit">Habit</string>
+
 </resources>
