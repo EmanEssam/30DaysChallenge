@@ -68,7 +68,8 @@ public class AddNewTaskActivity extends AppCompatActivity {
                         database.setPersistenceEnabled(true);
                     }
                     Task task;
-                    if (getIntent().getExtras().getBoolean("buy")) {
+                    if (getIntent().hasExtra("buy") &&
+                            getIntent().getExtras().getBoolean("buy")) {
                         task = new Task(mTitleTv.getText().toString(), mDescriptionTv.getText().toString(),
                                 mDateTv.getText().toString(), 3);
                     } else {

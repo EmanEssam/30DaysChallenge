@@ -33,5 +33,18 @@
     <string name="select_time">Select Time</string>
     <string name="name">name</string>
     <string name="progress">progress</string>
+    <string name="task_icon">task icon</string>
+    <string name="add_task_for_widget">add task for widget</string>
+    <string name="delete_task">delete task</string>
+    <string name="task_name">task name</string>
+    <string name="_1_2_2017">1/2/2017</string>
+    <string name="add_new_task">Add new Task</string>
+    <string name="task">Task</string>
+    <string name="_1">1</string>
+    <string name="habits">Habits</string>
+    <string name="to_buy_list_menu">To buy list</string>
+    <string name="progress_menu">Progress</string>
+    <string name="pinned_task">pinned task</string>
+
 
 </resources>

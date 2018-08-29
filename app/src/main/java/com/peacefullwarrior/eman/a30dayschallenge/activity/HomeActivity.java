@@ -1,6 +1,8 @@
 package com.peacefullwarrior.eman.a30dayschallenge.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -89,21 +91,27 @@ public class HomeActivity extends AppCompatActivity
             if (f instanceof ToBuyListFragment) {
                 Intent intent = new Intent(HomeActivity.this, AddNewTaskActivity.class);
                 intent.putExtra("buy", true);
-                startActivity(intent);
-                overridePendingTransition(R.anim.entry, R.anim.exit);
+                startActivityWithAnimation(intent);
             } else if (f instanceof DailyRoutineFragment) {
                 Intent intent = new Intent(HomeActivity.this, AddNewDailyRoutine.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.entry, R.anim.exit);
+                startActivityWithAnimation(intent);
             } else {
                 Intent intent = new Intent(HomeActivity.this, AddNewTaskActivity.class);
                 intent.putExtra("buy", false);
-                startActivity(intent);
-                overridePendingTransition(R.anim.entry, R.anim.exit);
+                startActivityWithAnimation(intent);
             }
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startActivityWithAnimation(Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle();
+            startActivity(intent, bundle);
+        } else {
+            startActivity(intent);
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
