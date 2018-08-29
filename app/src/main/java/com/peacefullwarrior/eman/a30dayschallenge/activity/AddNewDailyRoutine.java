@@ -19,6 +19,7 @@ import com.peacefullwarrior.eman.a30dayschallenge.R;
 import com.peacefullwarrior.eman.a30dayschallenge.model.Task;
 import com.peacefullwarrior.eman.a30dayschallenge.utils.AnalyticsApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddNewDailyRoutine extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class AddNewDailyRoutine extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mTracker.setScreenName("name" + AddNewDailyRoutine.class.getSimpleName());
+        mTracker.setScreenName(getString(R.string.name) + AddNewDailyRoutine.class.getSimpleName());
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
@@ -56,10 +57,9 @@ public class AddNewDailyRoutine extends AppCompatActivity {
                 } else {
                     FirebaseApp.initializeApp(AddNewDailyRoutine.this);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    database.setPersistenceEnabled(true);
                     Task task;
                     task = new Task(mTitleTv.getText().toString(), mDescriptionTv.getText().toString(),
-                            taskDate, 3);
+                            mDateTv.getText().toString(), 3);
 
                     DatabaseReference myRef = database.getReference("daily_routine");
                     myRef.push().setValue(task);
@@ -102,7 +102,7 @@ public class AddNewDailyRoutine extends AppCompatActivity {
                 mDateTv.setText(taskDate);
             }
         }, hour, minute, true);//Yes 24 hour time
-        mTimePicker.setTitle("Select Time");
+        mTimePicker.setTitle(getString(R.string.select_time));
         mTimePicker.show();
     }
 
@@ -111,9 +111,14 @@ public class AddNewDailyRoutine extends AppCompatActivity {
         mTitleTv = findViewById(R.id.task_title);
         mDescriptionTv = findViewById(R.id.task_desc);
         mDateTv = findViewById(R.id.task_date);
+        mDateTv.setText(getCurrentTime());
 
 
     }
 
+    private String getCurrentTime() {
+
+        return new SimpleDateFormat("hh:mm aa").format(Calendar.getInstance().getTime());
+    }
 
 }

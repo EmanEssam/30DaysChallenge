@@ -123,13 +123,13 @@ public class HomeActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new DailyRoutineFragment()).commit();
         } else if (id == R.id.habits) {
-            mTracker.setScreenName("name" + "Habit");
+            mTracker.setScreenName("name" + getString(R.string.habit));
             mTracker.send(new HitBuilders.ScreenViewBuilder().build());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new HabitFragment()).commit();
 
         } else if (id == R.id.events) {
-            mTracker.setScreenName("name" + "Events" +
+            mTracker.setScreenName("name" + getString(R.string.events) +
                     "");
             mTracker.send(new HitBuilders.ScreenViewBuilder().build());
             getSupportFragmentManager().beginTransaction()
@@ -137,12 +137,12 @@ public class HomeActivity extends AppCompatActivity
 
 
         } else if (id == R.id.to_buy_list) {
-            mTracker.setScreenName("name" + "To Buy List");
+            mTracker.setScreenName("name" + getString(R.string.to_buy_list));
             mTracker.send(new HitBuilders.ScreenViewBuilder().build());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new ToBuyListFragment()).commit();
         } else if (id == R.id.progress) {
-            mTracker.setScreenName("name" + "progress");
+            mTracker.setScreenName("name" + getString(R.string.progress));
             mTracker.send(new HitBuilders.ScreenViewBuilder().build());
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new ProgressFragment()).commit();

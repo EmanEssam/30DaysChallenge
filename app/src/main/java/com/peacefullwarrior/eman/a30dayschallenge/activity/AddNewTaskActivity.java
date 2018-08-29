@@ -23,6 +23,7 @@ import com.peacefullwarrior.eman.a30dayschallenge.R;
 import com.peacefullwarrior.eman.a30dayschallenge.model.Task;
 import com.peacefullwarrior.eman.a30dayschallenge.utils.AnalyticsApplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddNewTaskActivity extends AppCompatActivity {
@@ -49,6 +50,7 @@ public class AddNewTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_task);
+        database = FirebaseDatabase.getInstance();
         AnalyticsApplication application = (AnalyticsApplication) getApplication();
         mTracker = application.getDefaultTracker();
         initViews();
@@ -59,17 +61,19 @@ public class AddNewTaskActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(mTitleTv.getText())) {
                     mTitleTv.setError(getString(R.string.task_title_is_empty));
                 } else {
-//                    database.setPersistenceEnabled(true);
-                    FirebaseApp.initializeApp(AddNewTaskActivity.this);
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+                    if (database == null) {
+                        FirebaseApp.initializeApp(getApplicationContext());
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        database.setPersistenceEnabled(true);
+                    }
                     Task task;
                     if (getIntent().getExtras().getBoolean("buy")) {
                         task = new Task(mTitleTv.getText().toString(), mDescriptionTv.getText().toString(),
-                                taskDate, 3);
+                                mDateTv.getText().toString(), 3);
                     } else {
                         task = new Task(mTitleTv.getText().toString(), mDescriptionTv.getText().toString(),
-                                taskDate, taskType);
+                                mDateTv.getText().toString(), taskType);
                     }
                     DatabaseReference myRef = database.getReference("tasks");
 //                myRef.child("task").setValue(task);
@@ -115,6 +119,7 @@ public class AddNewTaskActivity extends AppCompatActivity {
             mTaskRB.setVisibility(View.VISIBLE);
             mEventRB.setVisibility(View.VISIBLE);
         }
+        mDateTv.setText(getCurrentDate());
 
 
     }
@@ -159,5 +164,10 @@ public class AddNewTaskActivity extends AppCompatActivity {
                 mDateTv.setText(taskDate);
             }
         }
+    }
+
+    private String getCurrentDate() {
+
+        return new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     }
 }

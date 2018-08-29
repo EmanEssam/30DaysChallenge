@@ -109,7 +109,7 @@ public class EditDailyRoutineActivity extends AppCompatActivity {
                 mDateTv.setText(taskDate);
             }
         }, hour, minute, true);//Yes 24 hour time
-        mTimePicker.setTitle("Select Time");
+        mTimePicker.setTitle(getString(R.string.select_time));
         mTimePicker.show();
     }
 

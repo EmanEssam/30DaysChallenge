@@ -62,20 +62,6 @@ public class DailyRoutineFragment extends Fragment {
         return view;
     }
 
-//    private void fillTasksData() {
-//        tasks.add(new Task(1, "Review your plan", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "Breakfast", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "workout", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "Go to work", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "Launch break", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "back home", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "learn new language", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "dinner", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "fun activity", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "set next day plan", "daily Plan", "1/1/2018", 1));
-//        tasks.add(new Task(1, "meditate", "daily Plan", "1/1/2018", 1));
-//
-//    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
